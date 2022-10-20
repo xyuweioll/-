@@ -1,0 +1,660 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>北京新发地</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=1500">
+	<meta charset="utf-8">
+	<meta name="keywords" content="新发地" />
+	<link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/sliderWip.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
+	<link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/bootstrap-header.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+	<link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/smoothbox.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/swiper-bundle.min.css" rel="stylesheet" type="text/css" media="all" />
+
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/jquery.min.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+	<style>
+		/***************** 表格轮播 */
+		.ul {
+			height: 600px;
+			position: relative;
+			transition: all 2s;
+			/* animation: scroll 10s linear infinite; */
+			/* transition: all 2s; */
+			/* animation:aaa 15s infinite 2s running; */
+			animation: myMove 15s linear infinite;
+			animation-fill-mode: forwards;
+
+		}
+
+		@keyframes myMove {
+			0% {
+				transform: translateY(0);
+			}
+
+			100% {
+				transform: translateY(-580px);
+			}
+
+		}
+
+		.ul:hover {
+			animation-play-state: paused;
+			cursor: pointer;
+		}
+		.swiper-container{
+			--swiper-navigation-color: #1A8C44;/* 单独设置按钮颜色 */
+			--swiper-navigation-size: 60px;/* 设置按钮大小 */
+		}
+
+		/*0608修改*/
+		#bbs2 .news{
+			background: white;
+			height: 420px;
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-top: 10px;
+			/* background-color: #efefef; */
+			/* background-color: grey; */
+		}
+		#bbs2 .swiper-wrapper .news img{
+			width: 100%;
+			height: 250px;
+			display: block;
+			transition: all 0.5s;
+			border-radius: 6px;
+		}
+		#bbs2 .swiper-wrapper .news img:hover {
+			/* 盒子阴影 */
+			box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.6);
+			/* 让盒子向上平移一定距离 */
+			transform: translateY(-5px);
+		}
+
+		#bbs2 .swiper-wrapper .news .newsTime{
+			margin: 10px 0;
+			display: inline-block;
+			font-size: 18px;
+		}
+		#bbs2 .swiper-wrapper .news .newsTitle{
+			/*margin: 10px 0;*/
+			display: inline-block;
+			font-size: 16px;
+			color: black;
+			text-decoration: none;
+		}
+
+		#bbs2 .swiper-wrapper .moreNews{
+			text-align: center;
+		}
+		#bbs2 .swiper-wrapper .moreNews a{
+			text-decoration: none;
+			color: white;
+			font-size: 18px;
+			width: 160px;
+			padding: 6px 0 6px 0;
+			display: inline-block;
+			border-radius: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Banner-->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!--小屏幕导航按钮和logo-->
+			<div class="navbar-header">
+				<img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/logo.png" style="margin-top: 20px;" class="img-responsive" alt="logo">
+			</div>
+			<!--小屏幕导航按钮和logo-->
+			<!--导航-->
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="./index.html" class="navactive scroll header-avtive">首页</a></li>
+					<li><a href="./companyProfile.html" class="scroll">公司简介</a></li>
+					<li><a href="./newsCenter.html" class="scroll"> 新闻中心</a></li>
+					<li><a href="./msgCenter" id="msgCenter" class="dropdown-toggle scroll" data-toggle="dropdown" role="button"
+							aria-haspopup="true" aria-expanded="false"><span
+								data-letters="Pages">信息中心</span><span class="caret"></span></a>
+						<ul class="nav dropdown-menu">
+							<li><a href="./priceDetail.html" class="scroll">价格行情</a></li>
+							<li><a href="./informationCenter.html" class="scroll">行情分析</a></li>
+						</ul> 
+					</li>
+					<li><a href="./merchantCenter.html" class="scroll">商户中心</a></li>
+					<li><a href="./productCenter.html" class="scroll">产品中心</a></li>
+				</ul>
+			</div>
+			<!--导航--> 
+			</div>
+	     <script>
+		$(document).ready(function () {
+            var price;
+			$(".nav li a").each(function () {
+				var $this = $(this);
+				var location=window.location.href; 
+				var s=location.indexOf("?");
+				var type = "";
+				if(s>=0){
+                    type = location.substring(s,location.length);
+				    location=location.substring(0,s);
+				}     
+				// if ($this[0].href == String(location)) {
+				// 	$this.addClass("header-avtive");
+				// }else{
+				// 	$this.removeClass("header-avtive");
+				// }   
+
+				if ($this[0].href == String(location) || ($this[0].href.indexOf('newsCenter.html') > 0 && String(location).indexOf("news-") > 0)
+					|| ($this[0].href.indexOf('informationCenter.html') > 0 && String(location).indexOf("infor-") > 0)) {
+				    if (String(location).indexOf("priceDetail.html") > 0
+						|| String(location).indexOf("informationCenter.html") > 0
+						|| String(location).indexOf("infor-") > 0) {
+                        $("#msgCenter").addClass("navactive scroll header-avtive");
+					} else {
+                        $this.addClass("navactive scroll header-avtive");
+					}
+				}else{
+					$this.removeClass("navactive scroll header-avtive");
+				}
+
+			});
+					
+
+		});
+		</script> 
+</nav>
+
+	<!-- banner -->
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
+		</ol>
+		<div class="carousel-inner" role="listbox" style="margin-top: 72px;" >
+			<a href="">
+				<div class="item active" >
+					<div class="container1">
+						<img class="imgs" src="http://newlands-web.oss-cn-beijing.aliyuncs.com/banner/images/461226a4-daaf-43af-b291-7e27115bbe44.jpg" alt="" style="height:700px;width:100%" >
+						<div class="carousel-caption">
+							<h3></h3>
+							<p></p>
+							<div class="agileits-button top_ban_agile">
+								<a class="btn  btn-lg" href="#" data-toggle="modal" data-target="#myModal"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a><a href="">
+				<div class="item item2" >
+					<div class="container2">
+						<img class="imgs" src="http://newlands-web.oss-cn-beijing.aliyuncs.com/banner/images/d6b8150d-b06a-438b-aa58-80289650f897.jpg" alt="" style="height:700px;width:100%" >
+						<div class="carousel-caption">
+							<h3></h3>
+							<p></p>
+							<div class="agileits-button top_ban_agile">
+								<a class="btn  btn-lg" href="#" data-toggle="modal" data-target="#myModal"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a><a href="">
+				<div class="item item3" >
+					<div class="container3">
+						<img class="imgs" src="http://newlands-web.oss-cn-beijing.aliyuncs.com/banner/images/a7ce0b70-8dec-4e68-a2a5-fac987cd13cf.jpg" alt="" style="height:700px;width:100%" >
+						<div class="carousel-caption">
+							<h3></h3>
+							<p></p>
+							<div class="agileits-button top_ban_agile">
+								<a class="btn  btn-lg" href="#" data-toggle="modal" data-target="#myModal"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a><a href="">
+				<div class="item item4" >
+					<div class="container4">
+						<img class="imgs" src="http://newlands-web.oss-cn-beijing.aliyuncs.com/banner/images/2d672c23-f7e2-437b-b836-960bc847495c.jpg" alt="" style="height:700px;width:100%" >
+						<div class="carousel-caption">
+							<h3></h3>
+							<p></p>
+							<div class="agileits-button top_ban_agile">
+								<a class="btn  btn-lg" href="#" data-toggle="modal" data-target="#myModal"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+			<!--<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">-->
+				<!--<span class="fa fa-chevron-left" aria-hidden="true"></span>-->
+				<!--<span class="sr-only">Previous</span>-->
+			<!--</a>-->
+			<!--<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">-->
+				<!--<span class="fa fa-chevron-right" aria-hidden="true"></span>-->
+				<!--<span class="sr-only">Next</span>-->
+			<!--</a>-->
+			<!-- The Modal -->
+		</div>
+	</div>
+	<!-- About Us-->
+	<div class="about" style="padding-top: 20px;padding-bottom: 20px;" >
+		<div class="container" style="width: 1170px;">
+			<b style="color: red">温馨提示：本网站公布价格仅供参考，如您对本市场公布价格有异议请联系工作人员，QQ:8035129</b>
+		</div>
+	</div>
+
+	<div class="about" id="about">
+		<div class="container new" style="width: 1170px;">
+			<h3>每日价格行情</h3>
+			<h5>Daily price quotation</h5>
+			<!-- 列表标题 -->
+			<ul id="ul">
+				<li class="ul_li" id="1186" >
+					<div >蔬菜</div>
+					<div></div>
+				</li>
+				<li id="1187" >
+					<div >水果</div>
+					<div></div>
+				</li>
+				<li id="1189" >
+					<div >肉禽蛋</div>
+					<div></div>
+				</li>
+				<li id="1190" >
+					<div >水产</div>
+					<div></div>
+				</li>
+				<li id="1188" >
+					<div >粮油</div>
+					<div></div>
+				</li>
+				<li id="1203" >
+					<div >豆制品</div>
+					<div></div>
+				</li>
+				<li id="1204" >
+					<div >调料</div>
+					<div></div>
+				</li>
+			</ul>
+
+			<a href="./priceDetail.html"><img class="ckgdImg" src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/ckgd.png" alt=""></a>
+			<div id="div">
+				<!-- 4 -->
+				<!--<div th:class="${catStat.count==1?'div_div':''}"   th:each="cat:${catlist}">-->
+				<div class="div_div">
+					<div class="tablebox">
+						<div class="tbl-header">
+							<table border="0" cellspacing="0" cellpadding="0">
+								<thead>
+								<tr>
+									<th width="140px">品名</th>
+									<th width="140px">最低价</th>
+									<th width="140px">平均价</th>
+									<th width="140px">最高价</th>
+									<th width="140px">规格</th>
+									<th width="140px">产地</th>
+									<th width="140px">单位</th>
+									<th>发布日期</th>
+								</tr>
+								</thead>
+								<tbody style="opacity:0;"></tbody>
+							</table>
+						</div>
+						<div class="tbl-body">
+							<table border="0" cellspacing="0" cellpadding="0">
+								<thead>
+								<tr>
+									<th width="140px">品名</th>
+									<th width="140px">最低价</th>
+									<th width="140px">平均价</th>
+									<th width="140px">最高价</th>
+									<th width="140px">规格</th>
+									<th width="140px">产地</th>
+									<th width="140px">单位</th>
+									<th>发布日期</th>
+								</tr>
+								</thead>
+								<tbody id="ulTableBody" class="ul">
+									<!--<tr th:each="price:${['pricelist'+catStat.index]}">-->
+										<!--<td th:text="${price.prodName}" ></td>-->
+										<!--<td th:text="${price.lowPrice}" ></td>-->
+										<!--<td th:text="${price.highPrice}" ></td>-->
+										<!--<td th:text="${price.avgPrice}" ></td>-->
+										<!--<td th:text="${price.specInfo}" ></td>-->
+										<!--<td th:text="${price.place}" ></td>-->
+										<!--<td th:text="${price.unitInfo}" ></td>-->
+										<!--<td th:text="${price.pubDate==null?'':#dates.format(price.pubDate,'yyyy-MM-dd')}" ></td>-->
+									<!--</tr>-->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- News-->
+	<div class="news" id="news">
+		<div class="container"  style="width: 1170px;">
+			<h3>市场行情分析</h3>
+			<h5>Market analysis</h5>
+			<div class="schqLeftDiv col-md-3">
+				<img src="./img/hangqing.png" class="img-responsive1" alt="">
+			</div>
+			<div class="quotation col-md-8" style="height: auto!important;margin-bottom: 15px;">
+				<div style="margin-bottom: 15px;">
+					<div class="news-title" style="margin-bottom: 1px;">
+						<div>每周市场动态（2022.5.14-2022.5.20）</div>
+						<div class="news-title-right">
+							<a href="/news-109.html"><img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/other.png" alt=""></a>
+						</div>
+					</div>
+					<span>一、白条猪价格走势本周，白条猪批发的平均价进入了调整状态，周内价格小幅波动，略有下行。5月20日，新...</span>
+				</div>
+				<div style="margin-bottom: 15px;">
+					<div class="news-title" style="margin-bottom: 1px;">
+						<div>每周市场动态（2022.5.7-2022.5.13）</div>
+						<div class="news-title-right">
+							<a href="/news-108.html"><img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/other.png" alt=""></a>
+						</div>
+					</div>
+					<span>一、白条猪价格走势本周前期，白条猪批发的平均价快速上涨；周后期高位调整。5月13日，新发地市场白条猪...</span>
+				</div>
+				<div style="margin-bottom: 15px;">
+					<div class="news-title" style="margin-bottom: 1px;">
+						<div>每周市场动态（2022.4.30-2022.5.6）</div>
+						<div class="news-title-right">
+							<a href="/news-107.html"><img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/other.png" alt=""></a>
+						</div>
+					</div>
+					<span>一、白条猪价格走势本周前期，白条猪批发的平均价稳步上行；周后期稳步回落。5月6日，新发地市场白条猪批...</span>
+				</div>
+			</div>
+
+			<div  style="text-align:center;margin-top: 10px;">
+				<a href="./informationCenter.html"><img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/other.png" style="width:160px;"  alt=""></a>
+			</div>
+		</div>
+	</div>
+
+	<!--/News-->
+	<div id="bbs2" class="about" style="padding: 0 0 50px 0;">
+		<div class="container" style="width:60%">
+			<h3>新闻中心</h3>
+			<h5>Market analysis</h5>
+			<!--<div class="newsList col-md-12 newsSelected">-->
+				<!--<div class="col-md-4 news" th:each="news:${newslist}">-->
+					<!--<a href="#">-->
+						<!--<img th:src="${news.pictureUrl}"  class="img-responsive">-->
+					<!--</a>-->
+					<!--<span class="newsTime"><b  th:text="${news.title}">标题1</b></span></br>-->
+					<!--<a href="#" class="newsTitle"><span th:text="${news.introduction}"></span></a>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide news">
+						<a href="/news-75.html">
+							<img src="http://newlands-n.oss-cn-beijing.aliyuncs.com/IMAGE/ee7972dd-d93c-4196-9964-881db6147e6a.jpg"  class="img-responsive">
+						</a>
+						<span class="newsTime"><b>最新动态】新发地资中分市场盛大开业</b></span></br>
+						<a href="/news-75.html" class="newsTitle"><span>新发地模式，资中速度，惊艳了整个农产品流通行业。9月17日，新发地（资中）分市场顺利开业，此项目是北...</span></a>
+					</div>
+					<div class="swiper-slide news">
+						<a href="/news-69.html">
+							<img src="http://newlands-n.oss-cn-beijing.aliyuncs.com/IMAGE/21ded4e0-d5cf-41a6-9feb-bbc9c9ffe8d3.jpg"  class="img-responsive">
+						</a>
+						<span class="newsTime"><b>【疫情防控】光山分市场向北京新发地捐赠了2万只口罩</b></span></br>
+						<a href="/news-69.html" class="newsTitle"><span>8月5日，新发地光山分市场捐赠的2万只口罩送达北京总部，疫情形势严峻复杂，做好防疫物资储备是重要措施...</span></a>
+					</div>
+					<div class="swiper-slide news">
+						<a href="/news-62.html">
+							<img src="http://newlands-n.oss-cn-beijing.aliyuncs.com/IMAGE/489abd6a-647c-4c67-9f98-34a8a9bcb825.jpg"  class="img-responsive">
+						</a>
+						<span class="newsTime"><b>【重大新闻】新发地市场全面启动新冠肺炎疫情联防联控工作应急预案</b></span></br>
+						<a href="/news-62.html" class="newsTitle"><span> 
+
+8月5日，新发地市场召开第五次疫情防控工作部署大会，并全面启动新发地市场疫情防控应急预案，...</span></a>
+					</div>
+					<div class="swiper-slide news">
+						<a href="/news-58.html">
+							<img src="http://newlands-n.oss-cn-beijing.aliyuncs.com/IMAGE/1c27a28a-da3f-4354-8779-e20765ee4c41.jpg"  class="img-responsive">
+						</a>
+						<span class="newsTime"><b>【市场动态】新发地市场将设立“平谷大桃”销售专区</b></span></br>
+						<a href="/news-58.html" class="newsTitle"><span>7月31日，平谷区副区长韩小波一行到新发地市场推动平谷大桃产销对接，市场董事长张玉玺、常务副总顾兆学...</span></a>
+					</div>
+					<div class="swiper-slide news">
+						<a href="/news-56.html">
+							<img src="http://newlands-n.oss-cn-beijing.aliyuncs.com/IMAGE/bcb0e4ec-110c-4679-ae15-e4db4b9be403.jpg"  class="img-responsive">
+						</a>
+						<span class="newsTime"><b>张玉玺董事长率队到蒙阴县进行农业考察</b></span></br>
+						<a href="/news-56.html" class="newsTitle"><span>7月25日，以“喜庆建党百年·共赴仙桃盛会”为主题的蒙阴县第四届蟠桃文化节隆重开幕，新发地市场董事长...</span></a>
+					</div>
+				</div>
+				<!-- 如果需要导航按钮 -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+
+			<div style="text-align:center;padding-top: 10px;">
+				<a href="./newsCenter.html"><img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/other.png" style="width:160px;" alt=""></a>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--&lt;!&ndash;//Clients&ndash;&gt;-->
+
+	<!--<div class="news" style="padding-top: 20px;padding-bottom: 20px;" >-->
+		<!--<div class="container" style="width: 1170px;text-align: center;">-->
+			<!--<b style="color: red">尊敬的各位网友：为了给大家提供更优质的服务，本网站即将改版，如您有好的建议和解决方案，请与我们联系，期待您的参与。</b>-->
+		<!--</div>-->
+	<!--</div>-->
+	<script>
+        $(function(){
+            var swiperSlider = new Swiper('.container .swiper-container', {
+                direction:'horizontal',
+                loop: false,
+                speed:600,
+                autoplay:false,
+                slidesPerView :3,
+                // prevButton:'.swiper-container .swiper-prev',
+                // nextButton:'.swiper-container .swiper-next',
+                // 如果需要前进后退按钮
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                on:{
+                    click:function(){
+                        console.log(1111)
+                    }
+                }
+            });
+            $('.swiper-prev').on('click',function(){
+                swiperSlider.slidePrev();
+            })
+            $('.swiper-next').on('click',function(){
+                swiperSlider.slideNext();
+            })
+        })
+
+        // var mySwiper = new Swiper ('.swiper-container', {
+        //     loop: false, // 循环模式选项
+        //     slidesPerView : 3,
+        //     slidesPerGroup : 3,
+        //
+        //     // 如果需要分页器
+        //     pagination: {
+        //         el: '.swiper-pagination',
+        //     },
+        //
+        //     // 如果需要前进后退按钮
+        //     navigation: {
+        //         nextEl: '.swiper-button-next',
+        //         prevEl: '.swiper-button-prev',
+        //     },
+        //
+        //     // 如果需要滚动条
+        //     scrollbar: {
+        //         el: '.swiper-scrollbar',
+        //     },
+        // })
+	</script>
+
+    <div class="yw-about-footer">
+
+	<div class="yw-constr">
+		<div class="yw-footerbox">
+			<div style="float:left">
+				<p class="yw-footer-copyright" style="margin-bottom:10px"><span style="font-size:20px;">联系我们</span></p>
+				<p class="yw-footer-copyright">QQ:8035129</p>
+				<p class="yw-footer-copyright">地址：北京市丰台区新发地</p></br>
+
+				<p class="yw-footer-copyright">© <script>document.write((new Date).getFullYear())</script>北京新发地农产品股份有限公司 <span class="br">版权所有</span></p>
+				<p class="yw-footer-copyrightmore"><a href="https://beian.miit.gov.cn/" style="color:#d1d2d4;" target="_blank">京ICP备15036961号</a>  北京新发地</p>
+			</div>
+
+	<div style="display: flex;justify-content:center">
+		<div style="float:left">
+			<img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/code1.jpg"  style="width:120px;height:120px" alt="">
+			<div class="iteams-text" style="text-align:center">公众号</div>
+		</div>
+		<div style="float:left; margin-left:20px">
+			<img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/code2.jpg"  style="width:120px;height:120px" alt="">
+			<div class="iteams-text" style="text-align:center">小程序</div>
+		</div>
+		<div style="float:left; margin-left:20px">
+			<img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/code3.jpg"  style="width:120px;height:120px" alt="">
+			<div class="iteams-text" style="text-align:center">抖音</div>
+		</div>
+
+		<!--<div style="float:left; margin-left:20px">
+			<div class="iteams-text" style="text-align:center"><a href="https://beian.miit.gov.cn/" target="_blank">京ICP备15036961号</a>
+				<span class="pr20">北京新发地</span>
+			</div>-->
+		</div>
+		</div>
+	</div>
+  </div>
+	<script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/bootstrap.min.js"></script>
+	<script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/move-top.js"></script>
+	<script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/easing.js"></script>
+	<script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/SmoothScroll.min.js"></script>
+
+	<!-- Slider script-->
+	<script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/responsiveslides.min.js"></script>
+	<script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/sliderWip.js"></script>
+
+	<script>
+
+
+
+		$(function () {
+
+			var curNum = 0;
+			var count = $("#inner").children('div').length;//
+
+			//左滑动
+			$(".btnleft").click(function () {
+				//如果到了最后一个元素，停止
+				if ((count - curNum) <= 3) {
+					return false;
+				}
+				curNum += 1;
+				$("#inner").animate({
+					// 每次点击都从左边裁剪280像素
+					left: '-=363'
+				}, 500);
+			});
+
+			//右滑动
+			$(".btnright").click(function () {
+				//如果到了第一个元素，停止
+				if (curNum <= 0) {
+					return false;
+				}
+				curNum -= 1;
+				console.log(11)
+				$("#inner").animate({
+					// 每次点击都从左边补充280像素
+					left: '+=363'
+				}, 500);
+			});
+
+			$(".ul_li").click()
+		});
+
+		$('.ul').append($('.ul').html())
+		// You can also use "$(window).load(function() {"
+		$(function () {
+			// Slideshow 4
+			$("#slider4").responsiveSlides({
+				auto: true,
+				pager: false,
+				nav: true,
+				speed: 500,
+				namespace: "callbacks",
+				before: function () {
+
+					$('.events').append("<li>before event fired.</li>");
+				},
+				after: function () {
+					$('.events').append("<li>after event fired.</li>");
+				}
+			});
+		});
+
+		// 切换表格
+		$("#ul>li").on("click", function () {
+			var index = $(this).index();
+			console.log('下标', $(this).attr("id"))
+			$(this).addClass("ul_li").siblings().removeClass("ul_li");
+			// $("#div>div").eq(index).addClass("div_div").siblings().removeClass("div_div");
+
+            $.post("/getCat.html", {prodCatid:$(this).attr("id")}, function (res) {
+                $("#ulTableBody").find("tr").remove();
+                for (var i = 0; i < res.list.length; i++) {
+                    $("#ulTableBody").append("<tr>" +
+						"<td>" + res.list[i].prodName + "</td>" +
+						"<td>" + res.list[i].lowPrice + "</td>" +
+						"<td>" + res.list[i].avgPrice + "</td>" +
+                        "<td>" + res.list[i].highPrice + "</td>" +
+						"<td>" + res.list[i].specInfo + "</td>" +
+						"<td>" + (res.list[i].place == null ? "" : res.list[i].place) + "</td>" +
+						"<td>" + res.list[i].unitInfo + "</td>" +
+						"<td>" + dateFormat(res.list[i].pubDate) + "</td>" +
+						"</tr>");
+                }
+            });
+		});
+
+        function dateFormat(date) {
+            if (date == null)
+                return "";
+
+            if (date.length > 10) {
+                return date.substring(0, 10);
+            } else {
+                return date;
+            }
+        }
+
+	</script>
+
+</body>
+
+</html>
